@@ -8,6 +8,7 @@ In this repository, you will find various projects that demonstrate different as
 
 ## Projects
 
+placesholders for now
 - Project 1: Description of project 1
 - Project 2: Description of project 2
 - Project 3: Description of project 3
@@ -16,7 +17,7 @@ Please feel free to explore the projects and provide feedback!
 
 ## Resources Used
 
-- Will put them somwehere around here...
+- 30-Days-Of-Python | by Asabeneh
 
 ## License
 
