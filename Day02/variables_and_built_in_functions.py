@@ -3,9 +3,9 @@
 python file and contents following exercises for day 2
 
 """
-first_name = 'gabriel'
-last_name = 'somera'
-full_name = 'gabriel somera'
+first_name = 'gabuki'
+last_name = 'yayay'
+full_name = 'gabuki yayay'
 country = 'japan'
 city = 'niigata city'
 age = 19
@@ -14,7 +14,7 @@ is_maried = True
 is_true = False
 is_light_on = True
 
-ip, gateway, hostname, make = '192.168.20.246', '192.168.20.128', 'gabriel', 'linux'
+ip, gateway, hostname, make = '192.168.20.246', '192.168.20.128', 'gabuki', 'linux'
 
 print(len(first_name)) # num
 print(len(last_name)) # num
