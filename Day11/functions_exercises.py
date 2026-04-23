@@ -221,15 +221,46 @@ print(is_empty('java sucks, c+ sucks'))
 # 4. Write different functions which take lists. They should calculate_mean, 
 # calculate_median, calculate_mode, calculate_range, calculate_variance, 
 # calculate_std (standard deviation).
+random_nums = [3,10,9,2,1,6,5,8,7,4]
+random_nums.sort()
 def calculate_mean(lst):
-    pass
+    sum = 0
+    for i in lst:
+        sum += i
+    return sum/len(lst)
 def calculate_median(lst):
-    pass
+    return lst[(len(lst))//2]
 def calculate_mode(lst):
-    pass
+    # 1. keep track of how many times we see certain number - dictionary
+    # 2. check within that list; get the number first store into our storage and increment times we see it afterwards - forloop
+    # 3. get the highest # count of the all the numbers - check the dictionary
+    # 4. return the number with the most amount of appearences - return
+
+    tracker = {}
+
+    for n in lst:
+        if n in tracker:
+            tracker[n] += 1
+        else:
+            tracker[n] = 1
+    
+    max_count = max(tracker.values()) 
+
+    for num, count in tracker.items():
+        if count == max_count:
+            return num
+
 def calculate_range(lst):
     pass
 def calculate_variance(lst):
     pass
 def calculate_std(lst):
     pass
+
+print(calculate_mean(random_nums))
+print(calculate_median(random_nums))
+print(calculate_mode(random_nums))
+print(calculate_range(random_nums))
+print(calculate_variance(random_nums))
+print(calculate_std(random_nums))
+
