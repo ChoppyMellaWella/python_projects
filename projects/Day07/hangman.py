@@ -36,12 +36,12 @@ chosen_letter = ""
 
 lives = 8 # lives - hangman stage go up for every live lost
 
-good_count = 0
+chosen_set_pile = []
 
-chosen_list_pile = []
+
 
 def still_going(): # return bool; basically did we win yet?
-    if good_count == len(chosen_word):
+    if bool(chosen_set_pile) and all(char in chosen_set_pile for char in chosen_word):
         return False
     else:
         return True
@@ -57,26 +57,21 @@ for i in range(len(chosen_word)):
     print('_',end="")
 print()
 
-print(chosen_word) # test
-
 while lives > 0 and still_going():
 
     chosen_letter = input('Choose letter: ')
 
-    chosen_list_pile.append(chosen_letter)
-
-    not_there = True
+    if chosen_letter in chosen_word and chosen_letter != "":
+        if chosen_letter not in chosen_set_pile:
+            chosen_set_pile.append(chosen_letter)
+    else:
+        lives -= 1
 
     for letter in chosen_word:
-        if letter in chosen_list_pile:
+        if letter in chosen_set_pile:
             print(letter, end="")
-            if not_there:
-                good_count += 1
-            
 
         else:
             print('_',end="")
-
-    print(good_count)
 
     print()
