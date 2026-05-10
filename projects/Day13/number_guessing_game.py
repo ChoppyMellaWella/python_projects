@@ -6,7 +6,12 @@
 # to play again or ultimately end. 
 
 # stuff i learned: 
-# r"" will use the raw characters. will not process any escape sequences
+# - r"" will use the raw characters. will not process any escape sequences
+# -  random.random()    Return the next random floating-point number in the range 0.0 <= X < 1.0
+
+
+
+import random
 
 def start_game():
     artwork = r"""
@@ -22,13 +27,43 @@ def start_game():
     print(artwork)
     print('Welcome to the number guessing game!')
 
-
 def ask_difficulty(answer):
-    match answer.lowercase().replace(" ",""):
+    match answer.lower().replace(" ",""):
         case 'e':
-            return 
+            return True, int(random.random()*100)
         case 'h':
-            pass
+            return 6, int(random.random()*1000)
+
+def check_high_low(answer, lives, rn):
+    match rn:
+        case num if num < answer and num != answer:
+            print("Too high! Try again!")
+            if type(lives) == type(67):
+                return lives-1
+            elif type(lives) == type(True):
+                return True
+        case num if num > answer and num != answer:
+            print("Too Low! Try again!")
+            if type(lives) == type(67):
+                return lives-1
+            elif type(lives) == type(True):
+                return True
+        case num if num == answer:
+            print(f"{rn} and {answer} are the same, you win!")
+            return False
 
 start_game()
-ask_difficulty(input('To start off- what difficulty do you want to play on? Easy [e] / Hard [h]'))
+lives, rn = ask_difficulty(input('Easy: 1-100 ; Unlimited lives\nHard: 1-1000 ; 6 lives\nTo start off- what difficulty do you want to play on? Easy [e] / Hard [h]: '))
+alive = "y"
+
+while lives or lives > 0 and alive == 'y':
+    answer=int(input("Guess a number: "))
+    lives = check_high_low(answer,lives,rn)
+    if type(67) == type(lives):
+        if lives == 0:
+            print(f"\nThe number was {rn}")
+            print("Thanks for playing!")
+        if lives == False or lives == 0:
+            alive = input("Play again? [y] [n]: ").lower().replace(" ","")
+            if alive == 'y':
+                lives, rn = ask_difficulty(input('To start off- what difficulty do you want to play on? Easy [e] / Hard [h]: '))
