@@ -1,20 +1,51 @@
 import gamedata as gd
 import gameart
+import random
 
-# print_intro_art
-def showIntro():
+score = 0
+keep_going = True
+
+def showLogo():
     print(gameart.logo)
 
-showIntro()
+def showVS():
+    print(gameart.vs)
 
-# print_option_a
-# print_option_b
+def showScore(score):
+    print(f"You're right! Current score: {score}")
 
-# ask_user_which_option_has_more_followers
+def showOptions():
+    option_A = generateOption()
+    print(f"Compare A: {option_A['name']}, a {option_A['description']}, from {option_A['country']}")
+    showVS()
+    option_B = generateOption()
+    print(f"Against B: {option_B['name']}, a {option_B['description']}, from {option_B['country']}")
+    return checkWhichOptionHigher(option_A, option_B)
 
-# compare_user_option_with_other_option
+def generateOption(gamedata=gd):
+    return random.choice(gamedata.data)
 
-# compare_user_option_with_next_option_if_correct
-# follow_same_logic_at_start
+def askUserOption():
+    answer = input("Who has more followers? Type 'A' or 'B': ").upper().replace(" ", "")
+    return answer
 
-# end_game_if_wrong
+def checkWhichOptionHigher(option_A, option_B):
+    if option_A['follower_count'] > option_B['follower_count']:
+        return 'A'
+    else:
+        return 'B'
+
+def decideOutcome(higher_option, userOption, score):
+    if higher_option == userOption:
+        return score + 1, True
+    else:
+        print(f"Sorry, that's not right. Final score: {score}")
+        return score, False
+
+# main code
+showLogo()
+while keep_going:
+    if score >= 1:
+        showScore(score)
+    higher_option = showOptions()
+    score, keep_going = decideOutcome(higher_option, askUserOption(), score)
